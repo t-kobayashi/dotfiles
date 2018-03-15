@@ -28,6 +28,7 @@
 (el-get-bundle ruby-mode)
 (el-get-bundle yaml-mode)
 (el-get-bundle flycheck)
+(el-get-bundle editorconfig)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
