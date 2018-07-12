@@ -5,3 +5,5 @@
           '(lambda ()
              (setq flycheck-checker 'ruby-rubocop)
              (flycheck-mode 1)))
+
+(setq ruby-insert-encoding-magic-comment nil)
