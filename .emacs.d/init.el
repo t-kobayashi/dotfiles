@@ -29,6 +29,7 @@
 (el-get-bundle yaml-mode)
 (el-get-bundle flycheck)
 (el-get-bundle editorconfig)
+(el-get-bundle markdown-mode)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
