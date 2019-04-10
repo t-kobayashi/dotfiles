@@ -1,0 +1,16 @@
+bpruitt-goddard.mermaid-markdown-syntax-highlighting
+dbaeumer.vscode-eslint
+EditorConfig.EditorConfig
+felixfbecker.php-debug
+felixfbecker.php-intellisense
+felixfbecker.php-pack
+mikestead.dotenv
+ms-azuretools.vscode-azurefunctions
+ms-vscode.azure-account
+ms-vscode.cpptools
+ms-vscode.csharp
+octref.vetur
+PeterJausovec.vscode-docker
+vstirbu.vscode-mermaid-preview
+wongjn.php-sniffer
+yzhang.markdown-all-in-one

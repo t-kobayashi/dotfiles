@@ -1,0 +1,25 @@
+{
+    "workbench.colorTheme": "Monokai",
+    "git.autofetch": true,
+    "extensions.ignoreRecommendations": true,
+    "workbench.statusBar.feedback.visible": false,
+    "files.trimTrailingWhitespace": true,
+    "editor.fontFamily": "Ricty, Menlo, Monaco, 'Courier New', monospace",
+    "editor.fontSize": 14,
+    "keyboard.dispatch": "keyCode",
+    "files.associations": {
+        "*.vue": "vue"
+    },
+    "git.enableSmartCommit": true,
+    "typescript.validate.enable": false,
+    "javascript.validate.enable": false,
+    "diffEditor.ignoreTrimWhitespace": false,
+    "files.autoSave": "off",
+    "editor.renderWhitespace": "all",
+    "editor.renderControlCharacters": true,
+    "breadcrumbs.enabled": true,
+    "workbench.sideBar.location": "left",
+    "[vue]": {},
+    "explorer.confirmDragAndDrop": false,
+    "explorer.confirmDelete": false
+}
