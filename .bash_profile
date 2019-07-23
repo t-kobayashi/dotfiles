@@ -6,7 +6,7 @@ export LV='-Ou8 -c'
 
 # golang
 export GOPATH=$HOME/go
-export PATH=$GOPATH/bin:$PATH
+export PATH=/usr/local/go/bin:$GOPATH/bin:$PATH
 
 # anyenv
 if [ -d $HOME/.anyenv ]; then
@@ -26,6 +26,16 @@ fi
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
+fi
+
+# VScode on osx
+if [ -d "/Applications/Visual Studio Code.app/Contents/Resources/app/bin" ]; then
+    PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+fi
+
+# envsubst
+if [ -d "/usr/local/opt/gettext/bin" ]; then
+    PATH="/usr/local/opt/gettext/bin:$PATH"
 fi
 
 export PATH

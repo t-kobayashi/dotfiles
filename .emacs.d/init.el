@@ -58,3 +58,4 @@
  ;; If there is more than one, they won't work right.
  )
 (put 'set-goal-column 'disabled nil)
+(add-hook 'text-mode-hook 'turn-on-auto-fill)

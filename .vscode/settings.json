@@ -4,8 +4,7 @@
     "extensions.ignoreRecommendations": true,
     "workbench.statusBar.feedback.visible": false,
     "files.trimTrailingWhitespace": true,
-    "editor.fontFamily": "Ricty, Menlo, Monaco, 'Courier New', monospace",
-    "editor.fontSize": 14,
+    "editor.fontSize": 16,
     "keyboard.dispatch": "keyCode",
     "files.associations": {
         "*.vue": "vue"
@@ -14,12 +13,15 @@
     "typescript.validate.enable": false,
     "javascript.validate.enable": false,
     "diffEditor.ignoreTrimWhitespace": false,
-    "files.autoSave": "off",
+    "files.autoSave": "afterDelay",
     "editor.renderWhitespace": "all",
     "editor.renderControlCharacters": true,
     "breadcrumbs.enabled": true,
     "workbench.sideBar.location": "left",
     "[vue]": {},
     "explorer.confirmDragAndDrop": false,
-    "explorer.confirmDelete": false
+    "explorer.confirmDelete": false,
+    "editor.fontFamily": "Ricty, Menlo, Monaco, 'Courier New', monospace",
+    "go.useLanguageServer": true,
+    "window.zoomLevel": 0
 }
