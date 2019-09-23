@@ -1,5 +1,4 @@
 {
-    "workbench.colorTheme": "Monokai",
     "git.autofetch": true,
     "extensions.ignoreRecommendations": true,
     "workbench.statusBar.feedback.visible": false,
@@ -24,4 +23,5 @@
     "editor.fontFamily": "Ricty, Menlo, Monaco, 'Courier New', monospace",
     "go.useLanguageServer": true,
     "window.zoomLevel": 0
+    "php-cs-fixer.executablePath": "${extensionPath}/php-cs-fixer.phar"
 }

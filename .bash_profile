@@ -15,6 +15,14 @@ if [ -d $HOME/.anyenv ]; then
     eval "$(anyenv init -)"
 fi
 
+if [ -d /usr/local/opt/mysql-client/bin ]; then
+    export PATH="/usr/local/opt/mysql-client/bin:$PATH"
+fi
+
+if [ -d /usr/local/opt/gettext/bin ]; then
+    export PATH="/usr/local/opt/gettext/bin:$PATH"
+fi
+
 # if running bash
 if [ -n "$BASH_VERSION" ]; then
     # include .bashrc if it exists
