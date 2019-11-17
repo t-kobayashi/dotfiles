@@ -1,5 +1,4 @@
 {
-    "workbench.colorTheme": "Monokai",
     "git.autofetch": true,
     "extensions.ignoreRecommendations": true,
     "workbench.statusBar.feedback.visible": false,
@@ -43,4 +42,5 @@
     },
     "window.zoomLevel": 0,
     "editor.formatOnSave": true
+    "php-cs-fixer.executablePath": "${extensionPath}/php-cs-fixer.phar"
 }
