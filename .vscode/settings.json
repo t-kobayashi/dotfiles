@@ -23,5 +23,24 @@
     "explorer.confirmDelete": false,
     "editor.fontFamily": "Ricty, Menlo, Monaco, 'Courier New', monospace",
     "go.useLanguageServer": true,
-    "window.zoomLevel": 0
+    "go.alternateTools": {
+        "go-langserver": "gopls"
+    },
+    "go.languageServerExperimentalFeatures": {
+        "format": true,
+        "autoComplete": true
+    },
+    "[go]": {
+        "editor.snippetSuggestions": "inline",
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": true
+        },
+    },
+    "gopls": {
+        "usePlaceholders": true,
+        "enhancedHover": true
+    },
+    "window.zoomLevel": 0,
+    "editor.formatOnSave": true
 }

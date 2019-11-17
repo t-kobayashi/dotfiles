@@ -2,14 +2,17 @@ awesomektvn.scratchpad
 bpruitt-goddard.mermaid-markdown-syntax-highlighting
 dbaeumer.vscode-eslint
 EditorConfig.EditorConfig
+eriklynd.json-tools
 felixfbecker.php-debug
 felixfbecker.php-intellisense
 felixfbecker.php-pack
+mauve.terraform
 mikestead.dotenv
 ms-azuretools.vscode-azurefunctions
 ms-azuretools.vscode-docker
 ms-kubernetes-tools.vscode-kubernetes-tools
 ms-python.python
+ms-vscode-remote.remote-containers
 ms-vscode.azure-account
 ms-vscode.cpptools
 ms-vscode.csharp
