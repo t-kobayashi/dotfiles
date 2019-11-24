@@ -1,4 +1,5 @@
 awesomektvn.scratchpad
+bmewburn.vscode-intelephense-client
 bpruitt-goddard.mermaid-markdown-syntax-highlighting
 dbaeumer.vscode-eslint
 EditorConfig.EditorConfig
@@ -6,6 +7,7 @@ eriklynd.json-tools
 felixfbecker.php-debug
 felixfbecker.php-intellisense
 felixfbecker.php-pack
+junstyle.php-cs-fixer
 mauve.terraform
 mikestead.dotenv
 ms-azuretools.vscode-azurefunctions
@@ -17,8 +19,11 @@ ms-vscode.azure-account
 ms-vscode.cpptools
 ms-vscode.csharp
 ms-vscode.Go
+neilbrayfield.php-docblocker
 octref.vetur
+rebornix.ruby
 redhat.vscode-yaml
 vstirbu.vscode-mermaid-preview
+wingrunr21.vscode-ruby
 wongjn.php-sniffer
 yzhang.markdown-all-in-one
