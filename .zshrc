@@ -10,8 +10,22 @@ zplugin load zsh-users/zsh-syntax-highlighting
 zplugin load zsh-users/zsh-completions
 zplugin light sindresorhus/pure
 
-source <(kubectl completion zsh)
+command -v kubectl > /dev/null 2>&1 && source <(kubectl completion zsh)
 
+### History
+export HISTFILE=${HOME}/.zsh_history
+export HISTSIZE=1000
+export SAVEHIST=100000
+setopt hist_ignore_dups
+setopt share_history
+setopt hist_ignore_all_dups
+setopt hist_ignore_space
+setopt hist_verify
+setopt hist_reduce_blanks
+setopt hist_save_no_dups
+setopt hist_no_store
+
+### ghq & peco
 peco-src () {
     local repo=$(ghq list | peco --query "$LBUFFER")
     if [ -n "$repo" ]; then
