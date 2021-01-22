@@ -304,11 +304,11 @@ bg_color = black
 
 # Meta キーとして使用するキーを指定
 # (none,mod1,mod2,mod3,mod4,meta,alt,super,hyper)
-# mod_meta_key = none
+mod_meta_key = alt
 
 # Meta キーを押下した時の挙動
 # (none,esc,8bit)
-# mod_meta_mode = none
+mod_meta_mode = esc
 
 # BEL(0x7)を受け取った時の挙動(none,sound,visual,sound|visual)
 bel_mode = none
