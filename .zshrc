@@ -1,14 +1,13 @@
 fpath=(~/.zsh-completions $fpath)
+bindkey -d
+bindkey -e
 autoload -Uz compinit
 compinit
+
 ### Added by Zplugin's installer
 source "$HOME/.zplugin/bin/zplugin.zsh"
 autoload -Uz zplugin
 (( ${+_comps} )) && _comps[zplugin]=_zplugin
-### End of Zplugin installer's chunk
-zplugin load zsh-users/zsh-syntax-highlighting
-zplugin load zsh-users/zsh-completions
-zplugin light sindresorhus/pure
 
 command -v kubectl > /dev/null 2>&1 && source <(kubectl completion zsh)
 
@@ -24,6 +23,10 @@ setopt hist_verify
 setopt hist_reduce_blanks
 setopt hist_save_no_dups
 setopt hist_no_store
+
+### Alias
+alias ls='ls -aFC'
+alias tmux='tmux -2'
 
 ### ghq & peco
 peco-src () {
@@ -93,4 +96,16 @@ zle -N peco-directories
 bindkey '^Xf' peco-directories
 zle -N peco-files
 bindkey '^X^f' peco-files
+
+
+### MicroK8s
+if which microk8s > /dev/null 2>&1; then
+  alias mkubectl='microk8s kubectl'
+fi
+
+### End of Zplugin installer's chunk
+zplugin load zsh-users/zsh-syntax-highlighting
+zplugin load zsh-users/zsh-completions
+zplugin light sindresorhus/pure
+zstyle ":completion:*:commands" rehash 1
 
