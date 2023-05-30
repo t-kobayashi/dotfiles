@@ -108,12 +108,23 @@ if which microk8s > /dev/null 2>&1; then
   alias mkubectl='microk8s kubectl'
 fi
 
+### nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+### Deno
+export DENO_INSTALL="/home/tetsu/.deno"
+
+### Android
+ANDROID_HOME=/usr/local/android
+
 # enable passphrase prompt for gpg
 export GPG_TTY=$(tty)
 
 ### End of Zplugin installer's chunk
-zinit load zsh-users/zsh-syntax-highlighting
-zinit load zsh-users/zsh-completions
+zinit light zsh-users/zsh-syntax-highlighting
+zinit light zsh-users/zsh-completions
 zinit light sindresorhus/pure
 zstyle ":completion:*:commands" rehash 1
 
