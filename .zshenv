@@ -13,6 +13,7 @@ path=(
     ~/go/bin(N-/)
     ~/node_modules/.bin(N-/)
     ~/.local/share/gem/ruby/3.0.0/bin(N-/)
+    ~/.pub-cache/bin(N-/)
     ~/.deno/bin(N-/)
     ~/.script(N-/)
     ~/ghq/github.com/flutter/flutter/bin(N-/)

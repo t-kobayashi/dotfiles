@@ -128,3 +128,11 @@ zinit light zsh-users/zsh-completions
 zinit light sindresorhus/pure
 zstyle ":completion:*:commands" rehash 1
 
+
+# pnpm
+export PNPM_HOME="/home/tetsu/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
