@@ -14,7 +14,6 @@ source "${ZINIT_HOME}/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
-command -v kubectl > /dev/null 2>&1 && source <(kubectl completion zsh)
 
 ### History
 export HISTFILE=${HOME}/.zsh_history
@@ -103,11 +102,6 @@ zle -N peco-files
 bindkey '^X^f' peco-files
 
 
-### MicroK8s
-if which microk8s > /dev/null 2>&1; then
-  alias mkubectl='microk8s kubectl'
-fi
-
 ### nvm
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -119,20 +113,35 @@ export DENO_INSTALL="/home/tetsu/.deno"
 ### Android
 ANDROID_HOME=/usr/local/android
 
-# enable passphrase prompt for gpg
+### Enable passphrase prompt for gpg
 export GPG_TTY=$(tty)
 
 ### End of Zplugin installer's chunk
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
-zinit light sindresorhus/pure
 zstyle ":completion:*:commands" rehash 1
 
-
-# pnpm
+### pnpm
 export PNPM_HOME="/home/tetsu/.local/share/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
-# pnpm end
+
+### Docker
+command -v docker > /dev/null 2>&1 && source <(docker completion zsh)
+
+### Kubernetes
+command -v kubectl > /dev/null 2>&1 && source <(kubectl completion zsh)
+
+### Micro k8s
+if which microk8s > /dev/null 2>&1; then
+  alias mkubectl='microk8s kubectl'
+fi
+
+### starship
+if command -v starship > /dev/null 2>&1; then
+  eval "$(starship init zsh)"
+else
+  zinit light sindresorhus/pure
+fi
