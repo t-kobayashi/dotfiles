@@ -4,6 +4,10 @@ bindkey -e
 autoload -Uz compinit
 compinit
 
+### EDITOR
+command -v emacs > /dev/null 2>&1 && EDITOR="emacs -nw"
+
+
 ### zinit's installer
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 if [[ ! -f $ZINIT_HOME/zinit.zsh ]]; then
@@ -14,7 +18,6 @@ source "${ZINIT_HOME}/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
-command -v kubectl > /dev/null 2>&1 && source <(kubectl completion zsh)
 
 ### History
 export HISTFILE=${HOME}/.zsh_history
@@ -104,6 +107,8 @@ bindkey '^X^f' peco-files
 
 
 ### MicroK8s
+command -v kubectl > /dev/null 2>&1 && source <(kubectl completion zsh)
+
 if which microk8s > /dev/null 2>&1; then
   alias mkubectl='microk8s kubectl'
 fi
@@ -117,7 +122,7 @@ export NVM_DIR="$HOME/.nvm"
 export DENO_INSTALL="/home/tetsu/.deno"
 
 ### Android
-ANDROID_HOME=/usr/local/android
+export ANDROID_HOME=/usr/local/android
 
 # enable passphrase prompt for gpg
 export GPG_TTY=$(tty)

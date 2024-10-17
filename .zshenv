@@ -16,6 +16,7 @@ path=(
     ~/.pub-cache/bin(N-/)
     ~/.deno/bin(N-/)
     ~/.script(N-/)
+    ~/.tfenv/bin(N-/)
     ~/ghq/github.com/flutter/flutter/bin(N-/)
     $path
 )
