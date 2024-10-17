@@ -8,6 +8,7 @@ path=(
     /usr/local/android/tools(N-/)
     /usr/local/android/tools/bin(N-/)
     /usr/local/android/build-tools/33.0.2(N-/)
+    /opt/homebrew/bin(N-/)
     "/Applications/Visual Studio Code.app/Contents/Resources/app/bin"(N-/)
     ~/bin(N-/)
     ~/go/bin(N-/)
