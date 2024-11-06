@@ -16,5 +16,6 @@ path=(
     ~/.deno/bin(N-/)
     ~/.script(N-/)
     ~/ghq/github.com/flutter/flutter/bin(N-/)
+    ~/.tfenv/bin(N-/)
     $path
 )

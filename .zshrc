@@ -128,3 +128,5 @@ zinit light zsh-users/zsh-completions
 zinit light sindresorhus/pure
 zstyle ":completion:*:commands" rehash 1
 
+### JAVA
+export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
