@@ -10,6 +10,8 @@ path=(
     /usr/local/android/build-tools/33.0.2(N-/)
     /opt/homebrew/bin(N-/)
     /opt/homebrew/opt/mysql-client/bin(N-/)
+    /opt/homebrew/opt/mysql-client@8.0/bin(N-/)
+    /opt/homebrew/opt/openjdk@17/bin(N-/)
     "/Applications/Visual Studio Code.app/Contents/Resources/app/bin"(N-/)
     ~/bin(N-/)
     ~/go/bin(N-/)
