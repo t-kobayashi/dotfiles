@@ -132,7 +132,18 @@ zinit light zsh-users/zsh-completions
 zstyle ":completion:*:commands" rehash 1
 
 ### JAVA
-export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+java_candidates=(
+    "/usr/lib/jvm/java-17-openjdk-amd64"
+    "/usr/lib/jvm/java-11-openjdk-amd64"
+    "/opt/homebrew/Cellar/openjdk@21/21.0.8/libexec/openjdk.jdk/Contents/Home"
+)
+for java_path in "${java_candidates[@]}"; do
+    if [[ -d "$java_path" ]]; then
+        export JAVA_HOME="$java_path"
+        export PATH="$JAVA_HOME/bin:$PATH"
+        break
+    fi
+done
 
 ### pnpm
 export PNPM_HOME="/home/tetsu/.local/share/pnpm"
