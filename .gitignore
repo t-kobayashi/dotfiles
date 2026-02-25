@@ -3,4 +3,6 @@
 .emacs.d/auto-save-list/
 .emacs.d/backups/
 .emacs.d/25.*.*/
+.emacs.d/29.*/
+.emacs.d/30.*/
 .emacs.d/ac-comphist.dat
