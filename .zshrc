@@ -21,7 +21,7 @@ autoload -Uz _zinit
 
 ### History
 export HISTFILE=${HOME}/.zsh_history
-export HISTSIZE=1000
+export HISTSIZE=100000
 export SAVEHIST=100000
 setopt hist_ignore_dups
 setopt share_history
@@ -68,7 +68,7 @@ function peco-directories() {
     dir=$(echo "$dir" | tr -d '\n')
     dir=$(printf %q "$dir")
 
-    BUFFER="${current_lbuffer}${file}${current_rbuffer}"
+    BUFFER="${current_lbuffer}${dir}${current_rbuffer}"
     CURSOR=$#BUFFER
   fi
 }
@@ -105,20 +105,13 @@ bindkey '^Xf' peco-directories
 zle -N peco-files
 bindkey '^X^f' peco-files
 
-### MicroK8s
-command -v kubectl > /dev/null 2>&1 && source <(kubectl completion zsh)
-
-if which microk8s > /dev/null 2>&1; then
-  alias mkubectl='microk8s kubectl'
-fi
-
 ### nvm
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 ### Deno
-export DENO_INSTALL="/home/tetsu/.deno"
+export DENO_INSTALL="$HOME/.deno"
 
 ### Android
 export ANDROID_HOME=/usr/local/android
@@ -146,7 +139,7 @@ for java_path in "${java_candidates[@]}"; do
 done
 
 ### pnpm
-export PNPM_HOME="/home/tetsu/.local/share/pnpm"
+export PNPM_HOME="$HOME/.local/share/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
@@ -169,3 +162,10 @@ if command -v starship > /dev/null 2>&1; then
 else
   zinit light sindresorhus/pure
 fi
+
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/usr/local/google-cloud-sdk/path.zsh.inc' ]; then . '/usr/local/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/usr/local/google-cloud-sdk/completion.zsh.inc' ]; then . '/usr/local/google-cloud-sdk/completion.zsh.inc'; fi
