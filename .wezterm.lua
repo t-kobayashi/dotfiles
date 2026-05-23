@@ -24,7 +24,9 @@ wezterm.on('format-tab-title', function(tab, tabs, panes, conf, hover, max_width
   local pane     = tab.active_pane
   local cwd      = pane.current_working_dir
   local dir      = cwd and cwd.file_path or ''
-  local basename = dir:match('([^/]+)/*$') or dir
+  local home     = wezterm.home_dir
+  local basename = (dir == home or dir == home .. '/') and '~'
+                   or dir:match('([^/]+)/*$') or dir
   local index    = tab.tab_index + 1
   local title    = string.format('%d %s ', index, basename)
   if wezterm.utf16_to_utf8 then  -- 文字数カウントの近似
