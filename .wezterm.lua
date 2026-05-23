@@ -27,6 +27,12 @@ wezterm.on('format-tab-title', function(tab, tabs, panes, conf, hover, max_width
   local basename = dir:match('([^/]+)/*$') or dir
   local index    = tab.tab_index + 1
   local title    = string.format('%d %s ', index, basename)
+  if wezterm.utf16_to_utf8 then  -- 文字数カウントの近似
+    -- シンプルにバイト長で近似（ASCII前提）
+    if #title > max_width - 2 then
+      title = title:sub(1, max_width - 3) .. '… '
+    end
+  end
 
   if tab.is_active then
     return {
