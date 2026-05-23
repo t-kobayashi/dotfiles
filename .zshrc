@@ -110,7 +110,7 @@ zle -N peco-files
 bindkey '^X^f' peco-files
 
 function peco-history() {
-  local selected=$(fc -l 1 | awk '{$1=""; print substr($0,2)}' | awk '!a[$0]++' | tac | peco)
+  local selected=$(fc -l 1 | awk '{$1=""; print substr($0,2)}' | awk '!a[$0]++' | tail -r | peco)
   if [ -n "$selected" ]; then
     BUFFER="$selected"
     CURSOR=$#BUFFER
