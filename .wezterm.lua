@@ -2,8 +2,8 @@ local wezterm = require 'wezterm'
 local config = wezterm.config_builder()
 
 -- Powerline タブタイトル (色はカラースキームから動的に取得)
-local PL_LEFT  = wezterm.nerdfonts.pl_left_hard_divider
-local PL_RIGHT = wezterm.nerdfonts.pl_right_hard_divider
+local PL_LEFT  = wezterm.nerdfonts.pl_right_hard_divider
+local PL_RIGHT = wezterm.nerdfonts.pl_left_hard_divider
 local BUILTIN_SCHEMES = wezterm.color.get_builtin_schemes()
 
 wezterm.on('format-tab-title', function(tab, tabs, panes, conf, hover, max_width)
