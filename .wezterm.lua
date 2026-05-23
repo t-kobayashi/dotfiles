@@ -1,19 +1,68 @@
 local wezterm = require 'wezterm'
 local config = wezterm.config_builder()
 
--- タブタイトルにカレントディレクトリ名を表示 (tmux: #{pane_current_path} の basename)
+-- Powerline タブタイトル (色はカラースキームから動的に取得)
+local PL_LEFT  = utf8.char(0xe0b2)  --
+local PL_RIGHT = utf8.char(0xe0b0)  --
+
 wezterm.on('format-tab-title', function(tab, tabs, panes, conf, hover, max_width)
-  local pane = tab.active_pane
-  local cwd = pane.current_working_dir
-  local dir = cwd and cwd.file_path or ''
+  local palette = conf.resolved_palette
+
+  local base_bg     = wezterm.color.parse(palette.background)
+  local bar_bg      = base_bg:darken(0.3)
+  local active_bg   = wezterm.color.parse(palette.brights[5])  -- bright blue
+  local inactive_bg = base_bg:lighten(0.1)
+  local inactive_fg = wezterm.color.parse(palette.foreground)
+
+  -- アクティブタブの文字色: 背景とのコントラストで黒/白を自動選択
+  local black = wezterm.color.parse('#000000')
+  local white = wezterm.color.parse('#ffffff')
+  local active_fg = active_bg:contrast_ratio(black) >= active_bg:contrast_ratio(white)
+    and tostring(black) or tostring(white)
+
+  local pane     = tab.active_pane
+  local cwd      = pane.current_working_dir
+  local dir      = cwd and cwd.file_path or ''
   local basename = dir:match('([^/]+)/*$') or dir
-  local index = tab.tab_index + 1
-  return string.format('%d:%s', index, basename)
+  local index    = tab.tab_index + 1
+  local title    = string.format(' %s %d: %s ', wezterm.nerdfonts.fa_folder, index, basename)
+
+  if tab.is_active then
+    return {
+      { Background = { Color = tostring(bar_bg) } },
+      { Foreground = { Color = tostring(active_bg) } },
+      { Text = PL_LEFT },
+      { Background = { Color = tostring(active_bg) } },
+      { Foreground = { Color = active_fg } },
+      { Attribute = { Intensity = 'Bold' } },
+      { Text = title },
+      { Attribute = { Intensity = 'Normal' } },
+      { Background = { Color = tostring(bar_bg) } },
+      { Foreground = { Color = tostring(active_bg) } },
+      { Text = PL_RIGHT },
+    }
+  end
+
+  return {
+    { Background = { Color = tostring(bar_bg) } },
+    { Foreground = { Color = tostring(inactive_bg) } },
+    { Text = PL_LEFT },
+    { Background = { Color = tostring(inactive_bg) } },
+    { Foreground = { Color = tostring(inactive_fg) } },
+    { Text = title },
+    { Background = { Color = tostring(bar_bg) } },
+    { Foreground = { Color = tostring(inactive_bg) } },
+    { Text = PL_RIGHT },
+  }
 end)
 
 -- Font (iTerm2: HackGenConsole-Regular 16)
 config.font = wezterm.font('HackGen Console NF', { weight = 'Regular' })
 config.font_size = 16.0
+config.window_frame = {
+  font = wezterm.font('HackGen Console NF', { weight = 'Regular' }),
+  font_size = 14.0,
+}
 
 -- Window size (iTerm2: 128 cols x 48 rows)
 config.initial_cols = 128
@@ -34,9 +83,10 @@ config.mouse_bindings = {
   },
 }
 
--- Tab bar
+-- Tab bar (retro mode for powerline custom rendering)
 config.hide_tab_bar_if_only_one_tab = false
-config.use_fancy_tab_bar = true
+config.use_fancy_tab_bar = false
+config.tab_bar_at_bottom = true
 
 -- Window appearance (no transparency, no blur)
 config.window_background_opacity = 1.0
