@@ -4,6 +4,7 @@ local config = wezterm.config_builder()
 -- Powerline タブタイトル (色はカラースキームから動的に取得)
 local PL_LEFT  = utf8.char(0xe0b2)  --
 local PL_RIGHT = utf8.char(0xe0b0)  --
+local BUILTIN_SCHEMES = wezterm.color.get_builtin_schemes()
 
 wezterm.on('format-tab-title', function(tab, tabs, panes, conf, hover, max_width)
   local palette = conf.resolved_palette
@@ -56,6 +57,26 @@ wezterm.on('format-tab-title', function(tab, tabs, panes, conf, hover, max_width
   }
 end)
 
+-- 右下にカラースキーム名を表示
+wezterm.on('update-right-status', function(window, pane)
+  local scheme_name = window:effective_config().color_scheme or ''
+  -- 括弧とその中身を削除 (例: "Gruvbox Dark (Gogh)" → "Gruvbox Dark")
+  local name = scheme_name:gsub('%s*%b()%s*', ''):gsub('%s+$', '')
+
+  local palette  = BUILTIN_SCHEMES[scheme_name]
+  local bar_bg   = palette and wezterm.color.parse(palette.background):darken(0.3) or '#181825'
+  local accent   = palette and palette.brights and palette.brights[5] or '#89b4fa'
+
+  window:set_right_status(wezterm.format {
+    { Background = { Color = tostring(bar_bg) } },
+    { Foreground = { Color = accent } },
+    { Text = PL_LEFT },
+    { Background = { Color = accent } },
+    { Foreground = { Color = tostring(bar_bg) } },
+    { Text = '  ' .. name .. ' ' },
+  })
+end)
+
 -- Font (iTerm2: HackGenConsole-Regular 16)
 config.font = wezterm.font('HackGen Console NF', { weight = 'Regular' })
 config.font_size = 16.0
@@ -87,6 +108,7 @@ config.mouse_bindings = {
 config.hide_tab_bar_if_only_one_tab = false
 config.use_fancy_tab_bar = false
 config.tab_bar_at_bottom = true
+config.show_new_tab_button_in_tab_bar = false
 
 -- Window appearance (no transparency, no blur)
 config.window_background_opacity = 1.0
@@ -94,12 +116,13 @@ config.window_padding = { left = 4, right = 4, top = 4, bottom = 4 }
 
 -- Color scheme (randomly selected at startup)
 local themes = {
-  'Nord',
+  'nord',
   'Catppuccin Mocha',
   'Gruvbox Dark (Gogh)',
   'Tokyo Night',
   'Solarized Dark (Gogh)',
   'One Dark (Gogh)',
+  'Monokai Pro (Gogh)',
   'Ubuntu',
   'Dracula',
 }
