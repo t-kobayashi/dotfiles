@@ -1,3 +1,9 @@
+tap "hashicorp/tap"
+
+# Configuration management tool
+brew "ansible"
+# Secure tunneling to expose local servers
+brew "cloudflared"
 # Migemo is a tool that supports Japanese incremental search with Romaji
 brew "cmigemo"
 # Dependency manager for Cocoa projects
@@ -10,6 +16,8 @@ brew "emacs"
 brew "gh"
 # Remote repository management made easy
 brew "ghq"
+# Fast static site generator
+brew "hugo"
 # Lightweight and flexible command-line JSON processor
 brew "jq"
 # LastPass command-line interface tool
@@ -36,11 +44,21 @@ brew "qpdf"
 brew "ripgrep"
 # Display and control your Android device
 brew "scrcpy"
+# Non-interactive SSH authentication with passwords
+brew "sshpass"
 # Cross-shell prompt for astronauts
 brew "starship"
 # Official documentation format of the GNU project
 brew "texinfo"
+# VNC server and viewer
+brew "tiger-vnc"
 # Terminal multiplexer
 brew "tmux"
+# Infrastructure as code tool
+brew "hashicorp/tap/terraform"
+
 cask "font-hackgen"
 cask "font-hackgen-nerd"
+cask "font-ipafont"
+cask "font-noto-sans-cjk-jp"
+cask "wezterm"
