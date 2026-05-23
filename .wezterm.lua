@@ -5,8 +5,6 @@ local config = wezterm.config_builder()
 local PL_LEFT  = utf8.char(0xe0b2)  --
 local PL_RIGHT = utf8.char(0xe0b0)  --
 
-local LOCAL_HOST = wezterm.hostname()
-
 wezterm.on('format-tab-title', function(tab, tabs, panes, conf, hover, max_width)
   local palette = conf.resolved_palette
 
@@ -22,25 +20,12 @@ wezterm.on('format-tab-title', function(tab, tabs, panes, conf, hover, max_width
   local active_fg = active_bg:contrast_ratio(black) >= active_bg:contrast_ratio(white)
     and tostring(black) or tostring(white)
 
-  local pane  = tab.active_pane
-  local cwd   = pane.current_working_dir
-  local index = tab.tab_index + 1
-
-  -- SSH判定: OSC 7 のホスト名がローカルホストと異なればSSH先
-  local host     = cwd and cwd.host or ''
-  local is_ssh   = host ~= '' and host ~= 'localhost' and host ~= LOCAL_HOST
+  local pane     = tab.active_pane
+  local cwd      = pane.current_working_dir
   local dir      = cwd and cwd.file_path or ''
   local basename = dir:match('([^/]+)/*$') or dir
-
-  local icon, label
-  if is_ssh then
-    icon  = wezterm.nerdfonts.fa_server
-    label = string.format('%d: %s [%s]', index, basename, host)
-  else
-    icon  = wezterm.nerdfonts.fa_folder
-    label = string.format('%d: %s', index, basename)
-  end
-  local title = string.format(' %s %s ', icon, label)
+  local index    = tab.tab_index + 1
+  local title    = string.format(' %s %d: %s ', wezterm.nerdfonts.fa_folder, index, basename)
 
   if tab.is_active then
     return {
