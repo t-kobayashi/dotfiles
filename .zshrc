@@ -2,7 +2,11 @@ fpath=(~/.zsh-completions $fpath)
 bindkey -d
 bindkey -e
 autoload -Uz compinit
-compinit
+if [[ -n ~/.zcompdump(#qN.mh+24) ]]; then
+  compinit
+else
+  compinit -C
+fi
 
 ### EDITOR
 command -v emacs > /dev/null 2>&1 && EDITOR="emacs -nw"
@@ -105,6 +109,16 @@ bindkey '^Xf' peco-directories
 zle -N peco-files
 bindkey '^X^f' peco-files
 
+function peco-history() {
+  local selected=$(fc -l 1 | awk '{$1=""; print substr($0,2)}' | awk '!a[$0]++' | tac | peco)
+  if [ -n "$selected" ]; then
+    BUFFER="$selected"
+    CURSOR=$#BUFFER
+  fi
+}
+zle -N peco-history
+bindkey '^R' peco-history
+
 ### nvm
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -122,6 +136,7 @@ export GPG_TTY=$(tty)
 ### End of Zplugin installer's chunk
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
+zinit light zsh-users/zsh-autosuggestions
 zstyle ":completion:*:commands" rehash 1
 
 ### JAVA
