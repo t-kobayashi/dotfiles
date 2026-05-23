@@ -114,6 +114,13 @@ config.keys = {
   -- ペイン一覧 (tmux: i)
   { key = 'i', mods = 'LEADER', action = wezterm.action.PaneSelect {} },
 
+  -- ペイン移動 (tmux: prefix + 矢印キー / o)
+  { key = 'LeftArrow',  mods = 'LEADER', action = wezterm.action.ActivatePaneDirection 'Left' },
+  { key = 'RightArrow', mods = 'LEADER', action = wezterm.action.ActivatePaneDirection 'Right' },
+  { key = 'UpArrow',    mods = 'LEADER', action = wezterm.action.ActivatePaneDirection 'Up' },
+  { key = 'DownArrow',  mods = 'LEADER', action = wezterm.action.ActivatePaneDirection 'Down' },
+  { key = 'o',          mods = 'LEADER', action = wezterm.action.ActivatePaneDirection 'Next' },
+
   -- コピーモード / ペースト (tmux: [ / y / p)
   { key = '[', mods = 'LEADER', action = wezterm.action.ActivateCopyMode },
   { key = 'y', mods = 'LEADER', action = wezterm.action.ActivateCopyMode },
