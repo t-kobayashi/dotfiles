@@ -2,7 +2,7 @@ local wezterm = require 'wezterm'
 local config = wezterm.config_builder()
 
 -- Powerline タブタイトル (色はカラースキームから動的に取得)
-local PL_LEFT  = wezterm.nerdfonts.ple_left_half_circle_thick
+-- local PL_LEFT  = wezterm.nerdfonts.ple_lower_right_triangle
 local PL_RIGHT = wezterm.nerdfonts.pl_left_hard_divider
 local BUILTIN_SCHEMES = wezterm.color.get_builtin_schemes()
 
@@ -28,34 +28,25 @@ wezterm.on('format-tab-title', function(tab, tabs, panes, conf, hover, max_width
   local basename = (dir == home or dir == home .. '/') and '~'
                    or dir:match('([^/]+)/*$') or dir
   local index    = tab.tab_index + 1
-  local title    = string.format('%d %s ', index, basename)
-  if wezterm.utf16_to_utf8 then  -- 文字数カウントの近似
-    -- シンプルにバイト長で近似（ASCII前提）
-    if #title > max_width - 2 then
-      title = title:sub(1, max_width - 3) .. '… '
-    end
+  local title    = string.format(' %d %s ', index, basename)
+  if wezterm.column_width(title) + 1 > max_width then
+    title = title:sub(1, max_width - 3) .. '… '
   end
 
   if tab.is_active then
     return {
-      { Background = { Color = tostring(bar_bg) } },
-      { Foreground = { Color = tostring(active_bg) } },
-      { Text = PL_LEFT },
       { Background = { Color = tostring(active_bg) } },
       { Foreground = { Color = active_fg } },
       { Attribute = { Intensity = 'Bold' } },
       { Text = title },
-      { Attribute = { Intensity = 'Normal' } },
       { Background = { Color = tostring(bar_bg) } },
       { Foreground = { Color = tostring(active_bg) } },
+      { Attribute = { Intensity = 'Normal' } },
       { Text = PL_RIGHT },
     }
   end
 
   return {
-    { Background = { Color = tostring(bar_bg) } },
-    { Foreground = { Color = tostring(inactive_bg) } },
-    { Text = PL_LEFT },
     { Background = { Color = tostring(inactive_bg) } },
     { Foreground = { Color = tostring(inactive_fg) } },
     { Text = title },
@@ -76,12 +67,9 @@ wezterm.on('update-right-status', function(window, pane)
   local accent   = palette and palette.brights and palette.brights[5] or '#89b4fa'
 
   window:set_right_status(wezterm.format {
-    { Background = { Color = tostring(bar_bg) } },
-    { Foreground = { Color = accent } },
-    { Text = PL_LEFT },
     { Background = { Color = accent } },
     { Foreground = { Color = tostring(bar_bg) } },
-    { Text = '  ' .. name .. ' ' },
+    { Text = ' ' .. name .. ' ' },
   })
 end)
 
@@ -94,7 +82,7 @@ config.window_frame = {
 }
 
 -- Window size (iTerm2: 128 cols x 48 rows)
-config.initial_cols = 128
+config.initial_cols = 160
 config.initial_rows = 48
 
 -- Scrollback (iTerm2: 10000 lines)
@@ -117,6 +105,7 @@ config.hide_tab_bar_if_only_one_tab = false
 config.use_fancy_tab_bar = false
 config.tab_bar_at_bottom = true
 config.show_new_tab_button_in_tab_bar = false
+config.tab_max_width = 28
 
 -- Window appearance (no transparency, no blur)
 config.window_background_opacity = 1.0
